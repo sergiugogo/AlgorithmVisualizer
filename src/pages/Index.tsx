@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'sonner';
 
@@ -39,7 +40,7 @@ const Index = () => {
   // Algorithm state
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<AlgorithmType>('bfs');
   const [startNodeId, setStartNodeId] = useState<string>(graph.nodes[0]?.id || '');
-  const [endNodeId, setEndNodeId] = useState<string>('');
+  const [endNodeId, setEndNodeId] = useState<string>('none');
   
   // Visualization state
   const [isRunning, setIsRunning] = useState(false);
