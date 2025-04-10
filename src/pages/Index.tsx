@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'sonner';
 
@@ -7,6 +6,7 @@ import GraphCanvas from '../components/GraphCanvas';
 import GraphControls from '../components/GraphControls';
 import AlgorithmSelector from '../components/AlgorithmSelector';
 import VisualizationControls from '../components/VisualizationControls';
+import GraphInput from '../components/GraphInput';
 
 import { 
   Graph, 
@@ -36,6 +36,7 @@ const Index = () => {
   const [graph, setGraph] = useState<Graph>(generateRandomGraph(6));
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [selectedEdgeId, setSelectedEdgeId] = useState<string | null>(null);
+  const [showMatrixInput, setShowMatrixInput] = useState(false);
   
   // Algorithm state
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<AlgorithmType>('bfs');
@@ -236,7 +237,6 @@ const Index = () => {
   
   // Handle start node change
   const handleStartNodeChange = (nodeId: string) => {
-    // Reset previous start node
     setGraph(prevGraph => {
       let newGraph = { ...prevGraph };
       
@@ -253,7 +253,6 @@ const Index = () => {
   
   // Handle end node change
   const handleEndNodeChange = (nodeId: string) => {
-    // Reset previous end node
     setGraph(prevGraph => {
       let newGraph = { ...prevGraph };
       
@@ -307,6 +306,27 @@ const Index = () => {
     document.body.removeChild(a);
     
     toast.success('Graph saved as JSON');
+  };
+  
+  // Toggle matrix input view
+  const toggleMatrixInput = () => {
+    setShowMatrixInput(!showMatrixInput);
+  };
+  
+  // Update graph from matrix
+  const handleGraphUpdate = (newGraph: Graph) => {
+    setGraph(newGraph);
+    
+    if (newGraph.nodes.length > 0 && (!startNodeId || !newGraph.nodes.find(n => n.id === startNodeId))) {
+      setStartNodeId(newGraph.nodes[0].id);
+    }
+    
+    if (endNodeId !== 'none' && !newGraph.nodes.find(n => n.id === endNodeId)) {
+      setEndNodeId('none');
+    }
+    
+    setShowMatrixInput(false);
+    resetVisualization();
   };
   
   // Update steps when algorithm or nodes change
@@ -365,7 +385,15 @@ const Index = () => {
               animationSpeed={animationSpeed}
               currentStep={currentStep}
               totalSteps={steps.length}
+              onToggleMatrixInput={toggleMatrixInput}
             />
+            
+            {showMatrixInput && (
+              <GraphInput 
+                onGraphChange={handleGraphUpdate}
+                currentGraph={graph}
+              />
+            )}
           </div>
           
           {/* Main content - Graph */}
@@ -411,6 +439,7 @@ const Index = () => {
               <ul className="text-sm space-y-1 text-muted-foreground">
                 <li>• Click on the canvas to add new nodes</li>
                 <li>• Select two nodes consecutively to create an edge</li>
+                <li>• Use the Matrix Input to define the graph with an adjacency matrix</li>
                 <li>• Select an algorithm, start node, and end node (optional)</li>
                 <li>• Use the controls to run, pause, or step through the algorithm</li>
                 <li>• Generate a random graph or clear the current graph</li>

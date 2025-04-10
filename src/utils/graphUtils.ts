@@ -1,4 +1,3 @@
-
 // Types for graph data structures
 export interface Node {
   id: string;
@@ -60,6 +59,68 @@ export const generateRandomGraph = (n: number, edgeProbability: number = 0.3): G
   }
   
   return graph;
+};
+
+// Generate a graph from an adjacency matrix
+export const generateGraphFromAdjacencyMatrix = (matrix: number[][], directed: boolean = false): Graph => {
+  const graph: Graph = { nodes: [], edges: [] };
+  const size = matrix.length;
+  
+  // Calculate positions in a circle
+  for (let i = 0; i < size; i++) {
+    const angle = (2 * Math.PI * i) / size;
+    const radius = 200;
+    
+    graph.nodes.push({
+      id: `n${i}`,
+      x: 300 + radius * Math.cos(angle),
+      y: 250 + radius * Math.sin(angle),
+      label: `${i}`,
+      status: 'default'
+    });
+  }
+  
+  // Create edges based on the adjacency matrix
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      if (matrix[i][j] > 0) {
+        // For undirected graphs, only add edges where i < j to avoid duplicates
+        if (directed || (!directed && i <= j)) {
+          graph.edges.push({
+            id: `e${i}-${j}`,
+            source: `n${i}`,
+            target: `n${j}`,
+            weight: matrix[i][j],
+            status: 'default'
+          });
+        }
+      }
+    }
+  }
+  
+  return graph;
+};
+
+// Convert a graph to an adjacency matrix
+export const convertGraphToAdjacencyMatrix = (graph: Graph, directed: boolean = false): number[][] => {
+  const size = graph.nodes.length;
+  const matrix = Array(size).fill(0).map(() => Array(size).fill(0));
+  
+  graph.edges.forEach(edge => {
+    const sourceId = edge.source;
+    const targetId = edge.target;
+    const sourceIndex = parseInt(sourceId.substring(1));
+    const targetIndex = parseInt(targetId.substring(1));
+    
+    matrix[sourceIndex][targetIndex] = edge.weight || 1;
+    
+    // For undirected graphs, mirror the connection
+    if (!directed && sourceIndex !== targetIndex) {
+      matrix[targetIndex][sourceIndex] = edge.weight || 1;
+    }
+  });
+  
+  return matrix;
 };
 
 // Reset all node and edge statuses to default

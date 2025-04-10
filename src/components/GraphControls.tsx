@@ -19,7 +19,8 @@ import {
   RefreshCw, 
   PlusCircle,
   Trash2,
-  Save
+  Save,
+  Table
 } from 'lucide-react';
 
 interface GraphControlsProps {
@@ -35,6 +36,7 @@ interface GraphControlsProps {
   onStartNodeChange: (nodeId: string) => void;
   onEndNodeChange: (nodeId: string) => void;
   onSpeedChange: (speed: number) => void;
+  onToggleMatrixInput: () => void;
   selectedAlgorithm: string;
   startNodeId: string;
   endNodeId: string;
@@ -58,6 +60,7 @@ const GraphControls: React.FC<GraphControlsProps> = ({
   onStartNodeChange,
   onEndNodeChange,
   onSpeedChange,
+  onToggleMatrixInput,
   selectedAlgorithm,
   startNodeId,
   endNodeId,
@@ -143,6 +146,16 @@ const GraphControls: React.FC<GraphControlsProps> = ({
         <h3 className="text-lg font-medium">Graph Controls</h3>
         
         <div className="flex flex-wrap gap-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={onToggleMatrixInput}
+            disabled={isRunning}
+          >
+            <Table className="mr-2 h-4 w-4" />
+            Matrix Input
+          </Button>
+          
           <Button 
             variant="outline" 
             size="sm" 
