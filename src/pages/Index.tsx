@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 
 import NavBar from '../components/NavBar';
 import GraphCanvas from '../components/GraphCanvas';
