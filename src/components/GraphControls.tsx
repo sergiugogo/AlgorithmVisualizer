@@ -125,7 +125,7 @@ const GraphControls: React.FC<GraphControlsProps> = ({
                 <SelectValue placeholder="Select end node" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">None</SelectItem>
+                <SelectItem value="none">None</SelectItem>
                 {nodeOptions
                   .filter((node) => node.id !== startNodeId)
                   .map((node) => (

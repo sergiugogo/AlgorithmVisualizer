@@ -53,7 +53,6 @@ const Index = () => {
   
   // Calculate delay based on animation speed (1-10)
   const getAnimationDelay = () => {
-    // Map 1-10 to 1000ms-100ms (inversely)
     return 1100 - (animationSpeed * 100);
   };
   
@@ -76,7 +75,6 @@ const Index = () => {
     setSelectedNodeId(nodeId);
     setSelectedEdgeId(null);
     
-    // If no start node is selected, set this as start node
     if (!startNodeId) {
       setStartNodeId(nodeId);
       setGraph(prevGraph => {
@@ -150,7 +148,6 @@ const Index = () => {
     const nextStep = steps[currentStep + 1];
     setCurrentStep(prevStep => prevStep + 1);
     
-    // Apply step to graph
     applyStepToGraph(nextStep);
   };
   
@@ -160,20 +157,17 @@ const Index = () => {
     
     setCurrentStep(prevStep => prevStep - 1);
     
-    // Reset graph and reapply all steps up to the new current step
     setGraph(prevGraph => {
       let newGraph = resetGraphStatus(prevGraph);
       
-      // Mark start and end nodes
       if (startNodeId) {
         newGraph = updateNodeStatus(newGraph, startNodeId, 'start');
       }
       
-      if (endNodeId) {
+      if (endNodeId && endNodeId !== 'none') {
         newGraph = updateNodeStatus(newGraph, endNodeId, 'end');
       }
       
-      // Apply all steps up to the new current step - 1
       for (let i = 0; i < currentStep - 1; i++) {
         newGraph = applyStepToGraphHelper(newGraph, steps[i]);
       }
@@ -226,7 +220,7 @@ const Index = () => {
       graph, 
       selectedAlgorithm, 
       startNodeId,
-      endNodeId || undefined
+      endNodeId && endNodeId !== 'none' ? endNodeId : undefined
     );
     
     setSteps(algorithmSteps);
@@ -262,11 +256,11 @@ const Index = () => {
     setGraph(prevGraph => {
       let newGraph = { ...prevGraph };
       
-      if (endNodeId) {
+      if (endNodeId && endNodeId !== 'none') {
         newGraph = updateNodeStatus(newGraph, endNodeId, 'default');
       }
       
-      return nodeId 
+      return nodeId && nodeId !== 'none'
         ? updateNodeStatus(newGraph, nodeId, 'end')
         : newGraph;
     });
@@ -280,7 +274,7 @@ const Index = () => {
     const newGraph = generateRandomGraph(numNodes);
     setGraph(newGraph);
     setStartNodeId(newGraph.nodes[0]?.id || '');
-    setEndNodeId('');
+    setEndNodeId('none');
     resetVisualization();
     
     toast.success(`Generated random graph with ${numNodes} nodes`);
@@ -290,7 +284,7 @@ const Index = () => {
   const handleClearGraph = () => {
     setGraph(createEmptyGraph());
     setStartNodeId('');
-    setEndNodeId('');
+    setEndNodeId('none');
     setSelectedNodeId(null);
     setSelectedEdgeId(null);
     resetVisualization();
