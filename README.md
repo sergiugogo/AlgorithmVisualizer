@@ -30,14 +30,6 @@ A modern, interactive visualizer for **graph traversal** and **sorting algorithm
 - Step-by-step execution with descriptions
 - Adjustable speed, input size, and custom input support
 
----
-
-## 🧪 Demo
-
-![Demo GIF or Screenshot](public/demo.gif) <!-- Replace with actual asset if available -->
-
----
-
 ## 🧰 Tech Stack
 
 - [Next.js](https://nextjs.org/) with App Router
@@ -53,8 +45,8 @@ A modern, interactive visualizer for **graph traversal** and **sorting algorithm
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/sergiugogo/AlgorithmVisualizer.git
+cd AlgorithmVisualizer
 ```
 
 ### 2. Install dependencies
@@ -114,7 +106,7 @@ PRs are welcome! Open an issue first for major changes.
 
 ## 💬 Questions?
 
-Feel free to [open an issue](https://github.com/your-username/your-repo-name/issues) or reach out on GitHub.
+Feel free to [open an issue](https://github.com/sergiugogo/AlgorithmVisualizer/issues) or reach out on GitHub.
 
 ```
 
