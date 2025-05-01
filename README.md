@@ -1,73 +1,132 @@
-# Welcome to your Lovable project
+Absolutely! Here's a clean, professional, and informative `README.md` template tailored specifically for your project — a modern **Graph & Sorting Algorithm Visualizer** built with **Next.js**, **TailwindCSS**, and **TypeScript**.
 
-## Project info
+---
 
-**URL**: https://lovable.dev/projects/1ae32d40-cb66-4131-8275-b34bb87c65f7
+## 📄 `README.md` Template
 
-## How can I edit this code?
+```markdown
+# 📊 Algorithm Visualizer
 
-There are several ways of editing your application.
+A modern, interactive visualizer for **graph traversal** and **sorting algorithms** built with **Next.js**, **TailwindCSS**, and **TypeScript**.
 
-**Use Lovable**
+> 🚀 Try it locally or deploy to the web for a hands-on learning experience.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1ae32d40-cb66-4131-8275-b34bb87c65f7) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ✨ Features
 
-**Use your preferred IDE**
+### 🔷 Graph Algorithms
+- Breadth-First Search (BFS)
+- Depth-First Search (DFS)
+- Dijkstra’s Algorithm
+- A* Search (with custom heuristics)
+- Bellman-Ford
+- Floyd-Warshall
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🟩 Sorting Algorithms
+- Bubble Sort
+- Selection Sort
+- Insertion Sort
+- Merge Sort
+- Quick Sort
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🛠️ Tools
+- Interactive graph editor (with edge weights, directions)
+- Bar chart animations for sorting
+- Step-by-step execution with descriptions
+- Adjustable speed, input size, and custom input support
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🧪 Demo
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+![Demo GIF or Screenshot](public/demo.gif) <!-- Replace with actual asset if available -->
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🧰 Tech Stack
+
+- [Next.js](https://nextjs.org/) with App Router
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Lucide Icons](https://lucide.dev/)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Run the dev server
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Visit `http://localhost:3000` to start using the visualizer.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 📁 Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+├── features/
+│   ├── graph-animation/
+│   ├── graph-input/
+├── utils/
+├── pages/
+├── components/
+```
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## ✅ Roadmap
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- [x] Graph algorithm animations
+- [x] Sorting visualizer
+- [ ] Add path tracing/highlighting
+- [ ] Export/import graph JSON
+- [ ] Add MST (Prim’s, Kruskal) & Topo Sort
+- [ ] Deploy with GitHub Pages or Vercel
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/1ae32d40-cb66-4131-8275-b34bb87c65f7) and click on Share -> Publish.
+## 🤝 Contributing
 
-## Can I connect a custom domain to my Lovable project?
+PRs are welcome! Open an issue first for major changes.
 
-Yes it is!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📜 License
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+[MIT](LICENSE)
+
+---
+
+## 💬 Questions?
+
+Feel free to [open an issue](https://github.com/your-username/your-repo-name/issues) or reach out on GitHub.
+
+```
+
+---
+
+Would you like me to:
+- Replace placeholders (like your GitHub repo URL)?
+- Add a license file?
+- Help generate a `demo.gif` recording?
