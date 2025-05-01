@@ -1,0 +1,49 @@
+import React, { useEffect, useState } from 'react';
+import { Graph, updateNodeStatus, updateEdgeStatus, resetGraphStatus } from '../../utils/graphUtils';
+import { floydWarshall } from '../../utils/graphAlgorithms';
+import GraphBoard from './GraphBoard';
+
+interface FloydWarshallAnimatorProps {
+  graph: Graph;
+}
+
+export default function FloydWarshallAnimator({ graph }: FloydWarshallAnimatorProps) {
+  const [animatedGraph, setAnimatedGraph] = useState<Graph>(() => resetGraphStatus(graph));
+  const [activeEdge, setActiveEdge] = useState<string | null>(null);
+
+  useEffect(() => {
+    const steps = floydWarshall(graph);
+    let i = 0;
+
+    const interval = setInterval(() => {
+      if (i >= steps.length) {
+        clearInterval(interval);
+        setActiveEdge(null);
+        return;
+      }
+
+      const step = steps[i];
+
+      setAnimatedGraph((prev) => {
+        let updated = { ...prev };
+
+        if (step.nodeId) {
+          updated = updateNodeStatus(updated, step.nodeId, 'visited');
+        }
+
+        if (step.edgeId) {
+          updated = updateEdgeStatus(updated, step.edgeId, 'active');
+          setActiveEdge(step.edgeId);
+        }
+
+        return updated;
+      });
+
+      i++;
+    }, 400);
+
+    return () => clearInterval(interval);
+  }, [graph]);
+
+  return <GraphBoard graph={animatedGraph} activeEdge={activeEdge} />;
+}

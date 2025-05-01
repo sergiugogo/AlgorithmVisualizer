@@ -1,10 +1,11 @@
 // Types for graph data structures
 export interface Node {
   id: string;
+  label?: string;
   x: number;
   y: number;
-  label?: string;
-  status?: 'default' | 'active' | 'visited' | 'start' | 'end';
+  status?: string;
+  heuristic?: number; // ← Add this if missing
 }
 
 export interface Edge {
