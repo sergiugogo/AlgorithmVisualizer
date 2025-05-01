@@ -1,10 +1,4 @@
-Absolutely! Here's a clean, professional, and informative `README.md` template tailored specifically for your project — a modern **Graph & Sorting Algorithm Visualizer** built with **Next.js**, **TailwindCSS**, and **TypeScript**.
 
----
-
-## 📄 `README.md` Template
-
-```markdown
 # 📊 Algorithm Visualizer
 
 A modern, interactive visualizer for **graph traversal** and **sorting algorithms** built with **Next.js**, **TailwindCSS**, and **TypeScript**.
